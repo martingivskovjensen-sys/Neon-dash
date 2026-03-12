@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Dash</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Firebase SDK -->
+    <script type="module">
+      import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
+      import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+      window.firebaseModules = { initializeApp, getFirestore };
+    </script>
+</head>
+<body>
+    <div id="gameContainer">
+        <canvas id="gameCanvas"></canvas>
+        <div id="uiOverlay">
+<div id="scoreDisplay">
+                <div>Score: <span id="score">0</span></div>
+                <div>High: <span id="highScore">0</span></div>
+                <div id="powerupStatus"></div>
+            </div>
+
+            <button id="startBtn">ENTER NAME & START</button>
+            <button id="adminCodeBtn" class="menu-btn-left">ADMIN CODE</button>
+            
+            <!-- Admin Code Modal -->
+            <div id="adminCodeModal" class="modal">
+                <div class="modal-content">
+                    <h3>Enter Admin Code</h3>
+                    <input type="password" id="adminCodeInput" placeholder="7896" maxlength="4">
+                    <button id="submitAdminCode">UNLOCK ADMIN</button>
+                    <p id="adminCodeError" class="error"></p>
+                </div>
+            </div>
+
+            
+            <!-- Username Modal -->
+            <div id="usernameModal" class="modal">
+                <div class="modal-content">
+                    <h3>Enter Username</h3>
+                    <input type="text" id="usernameInput" placeholder="Your name (unique)" maxlength="20">
+                    <button id="submitUsername">START GAME</button>
+                    <p id="usernameError" class="error"></p>
+                </div>
+            </div>
+
+            <!-- Leaderboard -->
+            <div id="leaderboard" class="leaderboard">
+                <h4>🏆 TOP SCORES</h4>
+                <ul id="leaderboardList"></ul>
+            </div>
+
+            <!-- Admin Panel -->
+            <div id="adminPanel" class="admin-panel hidden">
+                <h3>🔧 Admin Panel</h3>
+                <input type="password" id="adminPassword" placeholder="Admin Password">
+                <button id="adminLogin">Login</button>
+                <div id="adminContent" class="hidden">
+                    <div id="adminTimer">
+                        <label>Leaderboard Timer (s): <input type="number" id="timerInput" value="300" min="1"></label>
+                        <button id="startTimer">Start Timer</button>
+                        <button id="stopTimer">Stop Timer</button>
+                        <span id="timerDisplay">--</span>
+                    </div>
+                    <h4>All Scores</h4>
+                    <div id="allScoresList"></div>
+                </div>
+            </div>
+
+            <div id="gameOverScreen">
+                <h2>GAME OVER</h2>
+                <p>Final Score: <span id="finalScore">0</span></p>
+                <button id="restartBtn">RESTART</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
